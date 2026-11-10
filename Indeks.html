@@ -1,0 +1,327 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Von Dutch Official Store - Fashion Pria, Wanita & Anak</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E50914',
+                            dark: '#111111',
+                            accent: '#FFD700',
+                            gray: '#1A1A1A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .badge-promo { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-black text-white text-xs py-2 px-4 text-center font-medium flex justify-between items-center px-6 md:px-12">
+        <div class="hidden sm:flex items-center gap-4">
+            <span><i class="fa-solid fa-truck-fast text-brand-accent mr-1"></i> Melayani COD & Transfer Bank</span>
+            <span><i class="fa-solid fa-shield-halved text-brand-accent mr-1"></i> Produk 100% Original</span>
+        </div>
+        <div class="mx-auto sm:mx-0 flex items-center gap-4">
+            <a href="https://wa.me/6287831452251" target="_blank" class="hover:text-brand-accent transition"><i class="fa-brands fa-whatsapp text-green-400 mr-1"></i> 087831452251</a>
+            <span>|</span>
+            <a href="https://instagram.com/y4sserrpart2" target="_blank" class="hover:text-brand-accent transition"><i class="fa-brands fa-instagram text-pink-400 mr-1"></i> @y4sserrpart2</a>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex flex-col">
+                        <span class="text-3xl font-extrabold tracking-wider text-black font-black uppercase italic">VON DUTCH</span>
+                        <span class="text-[9px] tracking-widest text-brand-red font-bold uppercase -mt-1">Apparel & Apparel Co.</span>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Cari baju, merk, atau spesifikasi..." class="w-full bg-gray-100 border border-gray-200 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-black">
+                        <button class="absolute right-3 top-2.5 text-gray-400 hover:text-black">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Actions -->
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 text-gray-700 hover:text-black focus:outline-none">
+                        <i class="fa-solid fa-bag-shopping text-2xl"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-red text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <a href="#katalog" class="hidden sm:inline-block bg-black text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-800 transition shadow-md">
+                        Belanja Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROMO SECTION / BANNER ETALASE UTAMA -->
+    <section class="bg-gradient-to-r from-gray-900 via-black to-gray-800 text-white py-8 md:py-12 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="bg-brand-red text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider badge-promo">HOT PROMO</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Etalase Promo Spesial</h2>
+                </div>
+                <span class="text-xs md:text-sm text-gray-400">Diskon Terbatas S.d 50%</span>
+            </div>
+
+            <!-- Carousel Grid Promo Items -->
+            <div id="promoContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic Content Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow">
+        
+        <!-- Filter Category Tabs -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-gray-200 pb-4" id="katalog">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Katalog Produk</h2>
+                <p class="text-sm text-gray-500">Pakaian berkualitas tinggi untuk seluruh anggota keluarga</p>
+            </div>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 md:pb-0">
+                <button onclick="filterCategory('all')" class="cat-btn active bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition">Semua Produk</button>
+                <button onclick="filterCategory('pria')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition">Pria</button>
+                <button onclick="filterCategory('wanita')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition">Wanita</button>
+                <button onclick="filterCategory('dewasa')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition">Dewasa Unisex</button>
+                <button onclick="filterCategory('anak')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition">Anak-Anak</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Dynamic Content Generated by JS -->
+        </div>
+    </main>
+
+    <!-- Features / Payment Methods Banner -->
+    <section class="bg-white border-t border-b border-gray-200 py-10 my-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-center font-bold text-gray-800 text-lg mb-6">Metode Pembayaran Resmi & Kemudahan Transaksi</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center">
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-hand-holding-dollar text-3xl text-emerald-600 mb-2"></i>
+                    <span class="font-bold text-sm">COD / Cash</span>
+                    <span class="text-[11px] text-gray-500">Bayar di Tempat</span>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-clock-rotate-left text-3xl text-blue-600 mb-2"></i>
+                    <span class="font-bold text-sm">Angsuran</span>
+                    <span class="text-[11px] text-gray-500">Cicilan Mudah</span>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-qrcode text-3xl text-purple-600 mb-2"></i>
+                    <span class="font-bold text-sm">QRIS</span>
+                    <span class="text-[11px] text-gray-500">Scan Semua E-Wallet</span>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-building-columns text-3xl text-blue-800 mb-2"></i>
+                    <span class="font-bold text-sm">Transfer Bank</span>
+                    <span class="text-[11px] text-gray-500">BRI, BCA, BSI</span>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-wallet text-3xl text-orange-500 mb-2"></i>
+                    <span class="font-bold text-sm">E-Wallet</span>
+                    <span class="text-[11px] text-gray-500">DANA, OVO, GoPay</span>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-bag-shopping text-3xl text-red-500 mb-2"></i>
+                    <span class="font-bold text-sm">ShopeePay</span>
+                    <span class="text-[11px] text-gray-500">Instan & Praktis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-white text-2xl font-black italic uppercase tracking-wider mb-3">VON DUTCH</h3>
+                <p class="text-sm leading-relaxed mb-4">Toko pakaian berkualitas premium untuk Anak, Dewasa, Pria, dan Wanita. Temukan gaya terbaikmu bersama koleksi original dari kami.</p>
+                <div class="flex gap-4 text-xl">
+                    <a href="https://instagram.com/y4sserrpart2" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/6287831452251" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Kontak Kami</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fa-solid fa-phone text-brand-accent mr-2"></i> WhatsApp: 087831452251</li>
+                    <li><i class="fa-brands fa-instagram text-brand-accent mr-2"></i> Instagram: @y4sserrpart2</li>
+                    <li><i class="fa-solid fa-store text-brand-accent mr-2"></i> Von Dutch Official Outlet</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Dukungan Pembayaran</h4>
+                <div class="flex flex-wrap gap-2 text-xs font-semibold text-gray-300">
+                    <span class="bg-gray-800 px-3 py-1 rounded">COD</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">CASH</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">ANGSURAN</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">QRIS</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">BANK BRI</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">BANK BCA</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">BANK BSI</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">DANA</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">OVO</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">GOPAY</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded">SHOPEEPAY</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 text-center mt-12 pt-6 border-t border-gray-800 text-xs">
+            &copy; 2026 Von Dutch Store. All Rights Reserved. Designed for Fashion Enthusiasts.
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL PRODUK -->
+    <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 w-8 h-8 rounded-full flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent" class="p-6">
+                <!-- Content Filled Dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DRAWER KERANJANG / CART OVERLAY -->
+    <div id="cartDrawer" class="fixed inset-0 bg-black/50 z-50 hidden">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-lg"><i class="fa-solid fa-cart-shopping mr-2"></i> Keranjang Belanja</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-black text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Cart items list -->
+            </div>
+
+            <div class="p-4 border-t bg-gray-50 space-y-3">
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Total Subtotal:</span>
+                    <span id="cartTotal" class="text-brand-red">Rp 0</span>
+                </div>
+                <button onclick="openCheckoutModal()" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 rounded-xl shadow transition">
+                    Lanjut ke Pembayaran
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CHECKOUT & PEMBAYARAN -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 class="font-bold text-xl text-gray-900">Form Pemesanan & Pembayaran</h3>
+                <button onclick="closeCheckoutModal()" class="text-gray-500 hover:text-black"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="checkoutForm" onsubmit="processOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Nama Lengkap</label>
+                    <input type="text" id="custName" required placeholder="Masukkan nama Anda" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-black outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Nomor WhatsApp</label>
+                    <input type="tel" id="custPhone" required placeholder="Contoh: 08123456789" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-black outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Alamat Lengkap Pengiriman</label>
+                    <textarea id="custAddress" required rows="2" placeholder="Jalan, No. Rumah, Kecamatan, Kota" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-black outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Pilih Metode Pembayaran</label>
+                    <select id="paymentMethod" required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-black outline-none">
+                        <option value="">-- Pilih Jenis Pembayaran --</option>
+                        <option value="COD (Cash on Delivery)">COD (Bayar di Tempat)</option>
+                        <option value="Cash / Tunai Direct">Cash Direct</option>
+                        <option value="Angsuran / Cicilan">Angsuran / Cicilan Modal Mudah</option>
+                        <option value="QRIS All Payment">QRIS All Payment</option>
+                        <option value="Transfer Bank BRI">Transfer Bank BRI</option>
+                        <option value="Transfer Bank BCA">Transfer Bank BCA</option>
+                        <option value="Transfer Bank BSI">Transfer Bank BSI</option>
+                        <option value="E-Wallet DANA">E-Wallet DANA</option>
+                        <option value="E-Wallet OVO">E-Wallet OVO</option>
+                        <option value="E-Wallet GoPay">E-Wallet GoPay</option>
+                        <option value="E-Wallet ShopeePay">E-Wallet ShopeePay</option>
+                    </select>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Pesanan via WhatsApp
+                    </button>
+                    <p class="text-[11px] text-gray-500 text-center mt-2">Pesanan akan secara otomatis dialihkan ke WhatsApp resmi 087831452251</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA PRODUK STORE VON DUTCH
+        const products = [
+            // PROMO / ETALASE UTAMA
+            {
+                id: 1,
+                name: "Kaos Von Dutch Flying Wheel Limited",
+                category: "pria",
+                price: 249000,
+                originalPrice: 399000,
+                discount: "38%",
+                isPromo: true,
+                merk: "Von Dutch",
+                ukuran: ["M", "L", "XL"],
+                stok: 12,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80",
+                desain: "Grafis ikonik Von Dutch Flying Eyeball dengan sablon plastisol premium high density.",
+                spesifikasi: "Bahan Cotton Combed 24s ultra soft, menyerap keringat, jahitan rantai standar distro internasional."
+            },
+            {
+                id: 2,
+                name: "Jaket Von Dutch Denim Heritage Trucker",
+                category: "dewasa",
+                price: 599000,
+                originalPrice: 899000,
+         
